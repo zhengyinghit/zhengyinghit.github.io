@@ -224,32 +224,24 @@ code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, mo
    Publications (rendered from BibTeX by jekyll-scholar)
    ===================================================================== */
 ol.bibliography { list-style: none; padding: 0; margin: 0; }
-ol.bibliography > li { padding: 14px 0; border-bottom: 1px solid var(--border); }
+ol.bibliography > li { padding: 8px 0; border-bottom: 1px solid var(--border); }
 ol.bibliography > li:last-child { border-bottom: none; }
 
-h2.bibliography {
-  margin: 20px 0 2px;
-  font-size: 1.1rem;
-  color: var(--text-muted);
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 4px;
-}
-
-.pub-title { font-size: 1.02rem; margin: 0 0 2px; font-weight: 650; }
+.pub-title { font-size: 1rem; margin: 0 0 1px; font-weight: 650; }
 .pub-title a { color: var(--text); }
 .pub-title a:hover { color: var(--accent); text-decoration: none; }
 
-.pub-authors { margin: 0 0 2px; font-size: 0.92rem; }
-.pub-venue { margin: 0 0 8px; font-size: 0.88rem; color: var(--text-muted); }
+.pub-authors { margin: 0 0 1px; font-size: 0.9rem; }
+.pub-venue { margin: 0 0 4px; font-size: 0.85rem; color: var(--text-muted); }
 
-.pub-links { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 0; }
+.pub-links { display: flex; flex-wrap: wrap; gap: 4px; margin: 4px 0 0; }
 .pub-link {
   display: inline-flex;
   align-items: center;
-  padding: 2px 9px;
+  padding: 1px 7px;
   border: 1px solid var(--border);
   border-radius: 6px;
-  font-size: 0.76rem;
+  font-size: 0.72rem;
   font-weight: 500;
   color: var(--text-muted);
   background: var(--bg-subtle);
@@ -257,7 +249,7 @@ h2.bibliography {
 .pub-link:hover { color: var(--accent); border-color: var(--accent); text-decoration: none; }
 
 details.pub-abstract,
-details.pub-bibtex { margin-top: 8px; font-size: 0.88rem; }
+details.pub-bibtex { margin-top: 4px; font-size: 0.86rem; }
 details summary {
   cursor: pointer;
   color: var(--text-muted);
@@ -266,9 +258,9 @@ details summary {
   user-select: none;
 }
 details summary:hover { color: var(--accent); }
-.pub-abstract-text { margin-top: 6px; color: var(--text-muted); }
+.pub-abstract-text { margin-top: 4px; color: var(--text-muted); }
 
-.bibtex-wrap { position: relative; margin-top: 6px; }
+.bibtex-wrap { position: relative; margin-top: 4px; }
 .bibtex {
   margin: 0;
   padding: 12px;
