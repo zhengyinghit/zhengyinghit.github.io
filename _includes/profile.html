@@ -7,11 +7,11 @@
   {% endfor %}
 {% endif %}
 
-<section class="hero">
+<div class="hero">
   <div class="container hero-inner">
     {% if page.photo %}
       <div class="hero-photo">
-        <img src="{{ page.photo | relative_url }}" alt="Portrait of {{ page.name | default: site.title }}" width="160" height="160">
+        <img src="{{ page.photo | relative_url }}" alt="Portrait of {{ page.name | default: site.title }}" width="120" height="120">
       </div>
     {% else %}
       <div class="hero-photo hero-photo--placeholder" aria-hidden="true">{{ initials }}</div>
@@ -27,16 +27,7 @@
       </p>
       {% endif %}
 
-      {% if page.location %}<p class="hero-meta">{{ page.location }}</p>{% endif %}
-      {% if page.headline %}<p class="hero-headline">{{ page.headline }}</p>{% endif %}
-
-      {% if page.email or page.office or page.phone %}
-      <ul class="hero-contact">
-        {% if page.email %}<li><a href="mailto:{{ page.email }}">{{ page.email }}</a></li>{% endif %}
-        {% if page.office %}<li>{{ page.office }}</li>{% endif %}
-        {% if page.phone %}<li>{{ page.phone }}</li>{% endif %}
-      </ul>
-      {% endif %}
+      {% if page.email %}<p class="hero-contact"><a href="mailto:{{ page.email }}">{{ page.email }}</a></p>{% endif %}
 
       {% if page.links %}
       <div class="hero-links">
@@ -47,4 +38,4 @@
       {% endif %}
     </div>
   </div>
-</section>
+</div>

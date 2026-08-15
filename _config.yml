@@ -2,27 +2,12 @@
 #  Site settings
 # ============================================================
 title: "Jane Q. Researcher"
-# Short description used in <meta> tags and the footer.
-description: "Personal academic homepage of Jane Q. Researcher — publications, projects, teaching, and news."
+description: "Personal academic homepage of Jane Q. Researcher."
 
-# Public URL of the deployed site. Update this after you create the repo:
-#   - User/org site:  https://username.github.io
-#   - Project site:   https://username.github.io/repository
+# Public URL of the deployed site.
 url: "https://zhengyinghit.github.io"
-
-# Base URL. Leave empty ("") for a user/org site. For a project site the
-# GitHub Actions workflow sets it automatically at build time, so you can
-# leave this empty here too.
 baseurl: ""
-
 lang: "en"
-permalink: pretty
-
-# ============================================================
-#  Build settings
-# ============================================================
-markdown: kramdown
-highlighter: rouge
 
 sass:
   style: compressed
@@ -47,59 +32,26 @@ exclude:
   - .gems/
 
 # ============================================================
-#  Content collections
-#  Edit content by adding/removing Markdown files in these folders.
+#  Content collections (single-page site; listed inline, not output)
 # ============================================================
 collections:
   news:
-    output: true
-  projects:
-    output: true
-  teaching:
-    output: true
+    output: false
   service:
-    output: false   # service items are only listed on the /service/ page
-
-defaults:
-  - scope:
-      path: ""       # all files
-    values:
-      layout: default
-  - scope:
-      path: ""
-      type: news
-    values:
-      layout: post
-      permalink: /news/:name/
-  - scope:
-      path: ""
-      type: projects
-    values:
-      layout: project
-      permalink: /projects/:name/
-  - scope:
-      path: ""
-      type: teaching
-    values:
-      layout: post
-      permalink: /teaching/:name/
+    output: false
 
 # ============================================================
-#  Header navigation
+#  Header navigation — in-page anchors on the single page.
 # ============================================================
 navigation:
-  - title: Home
-    url: /
+  - title: About
+    url: "#about"
   - title: News
-    url: /news/
+    url: "#news"
   - title: Publications
-    url: /publications/
-  - title: Projects
-    url: /projects/
-  - title: Teaching
-    url: /teaching/
+    url: "#publications"
   - title: Service
-    url: /service/
+    url: "#service"
 
 # ============================================================
 #  jekyll-scholar — BibTeX bibliography settings.
@@ -118,4 +70,4 @@ scholar:
   # Convert LaTeX markup in BibTeX fields to Unicode/HTML before display.
   bibtex_filters: [ smallcaps, superscript, italics, textit, lowercase, textregistered, tiny, latex ]
   # Display-only fields removed from the "Copy BibTeX" output.
-  bibtex_skip_fields: [ abstract, month_numeric, selected, award, pdf, arxiv, code, website, slides, poster, video, supplement ]
+  bibtex_skip_fields: [ abstract, month_numeric, award, pdf, arxiv, code, website, slides, poster, video, supplement ]

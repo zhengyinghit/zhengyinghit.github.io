@@ -17,6 +17,23 @@
     });
   }
 
+  // Highlight the nav link of the section currently in view (scroll-spy)
+  var sections = document.querySelectorAll("main section[id]");
+  var navLinks = document.querySelectorAll(".nav-menu a");
+  if ("IntersectionObserver" in window && sections.length) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var id = entry.target.getAttribute("id");
+          navLinks.forEach(function (a) {
+            a.classList.toggle("active", a.getAttribute("href") === "#" + id);
+          });
+        }
+      });
+    }, { rootMargin: "-40% 0px -55% 0px" });
+    sections.forEach(function (s) { observer.observe(s); });
+  }
+
   // Copy-to-clipboard for BibTeX entries
   function copyText(text, btn) {
     var done = function (ok) {

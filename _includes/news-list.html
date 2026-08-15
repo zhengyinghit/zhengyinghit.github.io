@@ -1,13 +1,11 @@
 {% assign items = site.news | sort: 'date' | reverse %}
-{% assign lim = include.limit | default: 0 | plus: 0 %}
 <ul class="news-list">
   {% for item in items %}
-    {% if lim > 0 and forloop.index > lim %}{% break %}{% endif %}
     <li class="news-item">
       <time class="news-date" datetime="{{ item.date | date: '%Y-%m-%d' }}">{{ item.date | date: '%b %Y' }}</time>
       <div class="news-body">
         {% if item.category %}<span class="badge">{{ item.category }}</span>{% endif %}
-        <a class="news-title" href="{{ item.url | relative_url }}">{{ item.title }}</a>
+        <span class="news-title">{{ item.title }}</span>
       </div>
     </li>
   {% else %}

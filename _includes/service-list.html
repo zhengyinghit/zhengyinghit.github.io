@@ -1,12 +1,10 @@
 {% assign services = site.service | sort: 'year' | reverse %}
-{% assign lim = include.limit | default: 0 | plus: 0 %}
 <ul class="service-list">
   {% for s in services %}
-    {% if lim > 0 and forloop.index > lim %}{% break %}{% endif %}
     <li class="service-item">
       <span class="service-year">{{ s.year }}</span>
       <span class="service-desc">
-        <strong>{{ s.role }}</strong>{% if s.venue %} &mdash; {% if s.url %}<a href="{{ s.url | relative_url }}"{% if s.url contains '://' %} target="_blank" rel="noopener"{% endif %}>{{ s.venue }}</a>{% else %}{{ s.venue }}{% endif %}{% endif %}
+        <strong>{{ s.role }}</strong>{% if s.venue %} &mdash; {% if s.url %}<a href="{{ s.url }}"{% if s.url contains '://' %} target="_blank" rel="noopener"{% endif %}>{{ s.venue }}</a>{% else %}{{ s.venue }}{% endif %}{% endif %}
         {% if s.note %}<span class="service-note">({{ s.note }})</span>{% endif %}
       </span>
     </li>
