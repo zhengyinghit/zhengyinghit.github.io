@@ -1,0 +1,121 @@
+# ============================================================
+#  Site settings
+# ============================================================
+title: "Jane Q. Researcher"
+# Short description used in <meta> tags and the footer.
+description: "Personal academic homepage of Jane Q. Researcher — publications, projects, teaching, and news."
+
+# Public URL of the deployed site. Update this after you create the repo:
+#   - User/org site:  https://username.github.io
+#   - Project site:   https://username.github.io/repository
+url: "https://zhengyinghit.github.io"
+
+# Base URL. Leave empty ("") for a user/org site. For a project site the
+# GitHub Actions workflow sets it automatically at build time, so you can
+# leave this empty here too.
+baseurl: ""
+
+lang: "en"
+permalink: pretty
+
+# ============================================================
+#  Build settings
+# ============================================================
+markdown: kramdown
+highlighter: rouge
+
+sass:
+  style: compressed
+
+# Plugins. jekyll-scholar parses and renders the BibTeX files in _bibliography/.
+plugins:
+  - jekyll/scholar
+
+# Files/directories excluded from the built site.
+exclude:
+  - README.md
+  - LICENSE
+  - Gemfile
+  - Gemfile.lock
+  - package.json
+  - package-lock.json
+  - node_modules/
+  - vendor/
+  - .github/
+  - .gitignore
+  - .home/
+  - .gems/
+
+# ============================================================
+#  Content collections
+#  Edit content by adding/removing Markdown files in these folders.
+# ============================================================
+collections:
+  news:
+    output: true
+  projects:
+    output: true
+  teaching:
+    output: true
+  service:
+    output: false   # service items are only listed on the /service/ page
+
+defaults:
+  - scope:
+      path: ""       # all files
+    values:
+      layout: default
+  - scope:
+      path: ""
+      type: news
+    values:
+      layout: post
+      permalink: /news/:name/
+  - scope:
+      path: ""
+      type: projects
+    values:
+      layout: project
+      permalink: /projects/:name/
+  - scope:
+      path: ""
+      type: teaching
+    values:
+      layout: post
+      permalink: /teaching/:name/
+
+# ============================================================
+#  Header navigation
+# ============================================================
+navigation:
+  - title: Home
+    url: /
+  - title: News
+    url: /news/
+  - title: Publications
+    url: /publications/
+  - title: Projects
+    url: /projects/
+  - title: Teaching
+    url: /teaching/
+  - title: Service
+    url: /service/
+
+# ============================================================
+#  jekyll-scholar — BibTeX bibliography settings.
+#  Put your BibTeX entries in _bibliography/references.bib
+# ============================================================
+scholar:
+  style: apa
+  locale: en
+  source: ./_bibliography
+  bibliography: references.bib
+  sort_by: year, month
+  order: descending
+  group_by: none
+  bibliography_template: bib
+  reference_tagname: span
+  # Convert LaTeX markup in BibTeX fields to Unicode/HTML before display.
+  bibtex_filters: [ smallcaps, superscript, italics, textit, lowercase, textregistered, tiny, latex ]
+  # Display-only fields removed from the "Copy BibTeX" output.
+  bibtex_skip_fields: [ abstract, month_numeric, selected, award, pdf, arxiv, code, website, slides, poster, video, supplement ]

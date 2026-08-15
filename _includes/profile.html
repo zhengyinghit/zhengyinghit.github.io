@@ -1,0 +1,50 @@
+{% assign initials = '' %}
+{% if page.name %}
+  {% assign name_words = page.name | split: ' ' %}
+  {% for w in name_words limit: 2 %}
+    {% assign initial = w | slice: 0 %}
+    {% assign initials = initials | append: initial %}
+  {% endfor %}
+{% endif %}
+
+<section class="hero">
+  <div class="container hero-inner">
+    {% if page.photo %}
+      <div class="hero-photo">
+        <img src="{{ page.photo | relative_url }}" alt="Portrait of {{ page.name | default: site.title }}" width="160" height="160">
+      </div>
+    {% else %}
+      <div class="hero-photo hero-photo--placeholder" aria-hidden="true">{{ initials }}</div>
+    {% endif %}
+
+    <div class="hero-body">
+      <h1 class="hero-name">{{ page.name | default: site.title }}</h1>
+      {% if page.role %}<p class="hero-role">{{ page.role }}</p>{% endif %}
+
+      {% if page.department or page.institution %}
+      <p class="hero-affiliation">
+        {{ page.department }}{% if page.department and page.institution %}, {% endif %}{{ page.institution }}
+      </p>
+      {% endif %}
+
+      {% if page.location %}<p class="hero-meta">{{ page.location }}</p>{% endif %}
+      {% if page.headline %}<p class="hero-headline">{{ page.headline }}</p>{% endif %}
+
+      {% if page.email or page.office or page.phone %}
+      <ul class="hero-contact">
+        {% if page.email %}<li><a href="mailto:{{ page.email }}">{{ page.email }}</a></li>{% endif %}
+        {% if page.office %}<li>{{ page.office }}</li>{% endif %}
+        {% if page.phone %}<li>{{ page.phone }}</li>{% endif %}
+      </ul>
+      {% endif %}
+
+      {% if page.links %}
+      <div class="hero-links">
+        {% for link in page.links %}
+          <a class="pill" href="{{ link.url | relative_url }}"{% if link.url contains '://' %} target="_blank" rel="noopener"{% endif %}>{{ link.label }}</a>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,7 @@
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p class="footer-copy">&copy; {{ site.time | date: '%Y' }} {{ site.title }}</p>
+    {% assign home = site.pages | where: 'layout', 'home' | first %}
+    {% if home.email %}<p class="footer-contact"><a href="mailto:{{ home.email }}">{{ home.email }}</a></p>{% endif %}
+  </div>
+</footer>

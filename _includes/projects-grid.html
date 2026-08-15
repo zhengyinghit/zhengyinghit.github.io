@@ -1,0 +1,24 @@
+{% assign projects = site.projects | sort: 'date' | reverse %}
+{% assign lim = include.limit | default: 0 | plus: 0 %}
+<div class="project-grid">
+  {% for p in projects %}
+    {% if lim > 0 and forloop.index > lim %}{% break %}{% endif %}
+    <article class="project-card">
+      {% if p.image %}
+        <a class="project-thumb" href="{{ p.url | relative_url }}"><img src="{{ p.image | relative_url }}" alt="{{ p.title }}" loading="lazy"></a>
+      {% endif %}
+      <div class="project-body">
+        <h3 class="project-title"><a href="{{ p.url | relative_url }}">{{ p.title }}</a></h3>
+        {% if p.status %}<span class="badge badge--{{ p.status | slugify }}">{{ p.status }}</span>{% endif %}
+        {% if p.tagline %}<p class="project-tagline">{{ p.tagline }}</p>{% endif %}
+        {% if p.links %}
+        <div class="project-links">
+          {% for l in p.links %}<a class="pill pill--small" href="{{ l.url | relative_url }}"{% if l.url contains '://' %} target="_blank" rel="noopener"{% endif %}>{{ l.label }}</a>{% endfor %}
+        </div>
+        {% endif %}
+      </div>
+    </article>
+  {% else %}
+    <p class="empty">No projects yet. Add Markdown files to <code>_projects/</code>.</p>
+  {% endfor %}
+</div>

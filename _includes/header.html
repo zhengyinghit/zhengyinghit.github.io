@@ -1,0 +1,22 @@
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <ul id="nav-menu" class="nav-menu">
+        {% for item in site.navigation %}
+          {% assign cls = '' %}
+          {% if page.url == item.url %}{% assign cls = 'active' %}{% endif %}
+          {% if cls == '' and item.url != '/' and page.url contains item.url %}{% assign cls = 'active' %}{% endif %}
+          <li>
+            <a href="{{ item.url | relative_url }}"{% if cls == 'active' %} class="active" aria-current="page"{% endif %}>{{ item.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
+</header>

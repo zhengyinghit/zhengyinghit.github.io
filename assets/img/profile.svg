@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320">
+  <rect width="320" height="320" rx="24" fill="#eef2ff"/>
+  <circle cx="160" cy="122" r="52" fill="#c7d2fe"/>
+  <path d="M52 292c0-60 48-96 108-96s108 36 108 96" fill="#c7d2fe"/>
+  <text x="160" y="168" font-family="Georgia, serif" font-size="120" font-weight="bold" fill="#4f46e5" text-anchor="middle" dominant-baseline="middle">JR</text>
+</svg>

@@ -1,0 +1,44 @@
+---
+layout: default
+---
+{% include profile.html %}
+
+<section class="section" id="bio">
+  <div class="container">
+    <div class="prose">{{ content }}</div>
+  </div>
+</section>
+
+<section class="section" id="news">
+  <div class="container">
+    <h2 class="section-title">News</h2>
+    {% include news-list.html limit=4 %}
+    <p class="section-more"><a href="{{ '/news/' | relative_url }}">All news &rarr;</a></p>
+  </div>
+</section>
+
+<section class="section" id="publications">
+  <div class="container">
+    <h2 class="section-title">Selected Publications</h2>
+    <div class="publications">
+      {% bibliography --query @*[selected=true] %}
+    </div>
+    <p class="section-more"><a href="{{ '/publications/' | relative_url }}">All publications &rarr;</a></p>
+  </div>
+</section>
+
+<section class="section" id="projects">
+  <div class="container">
+    <h2 class="section-title">Projects</h2>
+    {% include projects-grid.html limit=6 %}
+    <p class="section-more"><a href="{{ '/projects/' | relative_url }}">All projects &rarr;</a></p>
+  </div>
+</section>
+
+<section class="section" id="service">
+  <div class="container">
+    <h2 class="section-title">Service</h2>
+    {% include service-list.html limit=6 %}
+    <p class="section-more"><a href="{{ '/service/' | relative_url }}">All service &rarr;</a></p>
+  </div>
+</section>
