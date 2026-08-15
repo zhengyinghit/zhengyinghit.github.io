@@ -34,6 +34,19 @@
     sections.forEach(function (s) { observer.observe(s); });
   }
 
+  // Toggle the BibTeX block from the links row
+  document.querySelectorAll("[data-bibtex-toggle]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var article = btn.closest(".publication");
+      var wrap = article ? article.querySelector(".bibtex-wrap") : null;
+      if (wrap) {
+        var willOpen = wrap.hidden;
+        wrap.hidden = !wrap.hidden;
+        btn.classList.toggle("is-active", willOpen);
+      }
+    });
+  });
+
   // Copy-to-clipboard for BibTeX entries
   function copyText(text, btn) {
     var done = function (ok) {

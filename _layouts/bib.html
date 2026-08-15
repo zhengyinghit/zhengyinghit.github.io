@@ -23,13 +23,13 @@
     <p class="pub-venue">{% capture venue %}{% case entry.type %}{% when 'article' %}{{ entry.journal }}{% if entry.volume %}{% if entry.journal %}, {% endif %}vol. {{ entry.volume }}{% endif %}{% if entry.number %}({{ entry.number }}){% endif %}{% if entry.pages %}{% if entry.volume or entry.number %}, {% endif %}pp. {{ entry.pages }}{% endif %}{% when 'inproceedings' %}{{ entry.booktitle }}{% if entry.series %} ({{ entry.series }}){% endif %}{% when 'incollection' %}{{ entry.booktitle }}{% if entry.publisher %}{% if entry.booktitle %}, {% endif %}{{ entry.publisher }}{% endif %}{% when 'phdthesis' %}{{ entry.school }}{% when 'mastersthesis' %}{{ entry.school }}{% when 'techreport' %}{{ entry.institution }}{% when 'book' %}{{ entry.publisher }}{% when 'misc' %}{{ entry.howpublished }}{% when 'unpublished' %}{{ entry.howpublished }}{% if entry.note %}{% if entry.howpublished %}, {% endif %}{{ entry.note }}{% endif %}{% else %}{{ entry.journal }}{% if entry.journal and entry.booktitle %} / {% endif %}{{ entry.booktitle }}{% if entry.howpublished %}{% if entry.journal or entry.booktitle %}, {% endif %}{{ entry.howpublished }}{% endif %}{% endcase %}{% endcapture %}{% assign venue = venue | strip %}{% if venue != '' %}{{ venue }}{% if entry.year %}, {% endif %}{% endif %}{% if entry.year %}{{ entry.year }}{% endif %}{% if entry.award %} <span class="badge badge--award">{{ entry.award }}</span>{% endif %}</p>
   </div>
 
-  {% if entry.pdf or entry.arxiv or entry.eprint or entry.code or entry.website or entry.slides or entry.poster or entry.video or entry.supplement or entry.doi %}
   <div class="pub-links">
-    {% if entry.pdf %}<a class="pub-link" href="{{ entry.pdf | relative_url }}"{% if entry.pdf contains '://' %} target="_blank" rel="noopener"{% endif %}>PDF</a>{% endif %}
-
     {% assign arxiv_id = '' %}
     {% if entry.arxiv %}{% assign arxiv_id = entry.arxiv | strip %}{% elsif entry.eprint %}{% assign ap = entry.archiveprefix | downcase %}{% if ap contains 'arxiv' %}{% assign arxiv_id = entry.eprint | strip %}{% endif %}{% endif %}
-    {% if arxiv_id != '' %}
+
+    {% if entry.pdf %}
+      <a class="pub-link" href="{{ entry.pdf | relative_url }}"{% if entry.pdf contains '://' %} target="_blank" rel="noopener"{% endif %}>PDF</a>
+    {% elsif arxiv_id != '' %}
       {% assign arxiv_url = arxiv_id %}
       {% unless arxiv_url contains '://' %}{% assign arxiv_url = arxiv_url | prepend: 'https://arxiv.org/abs/' %}{% endunless %}
       <a class="pub-link" href="{{ arxiv_url }}" target="_blank" rel="noopener">arXiv</a>
@@ -41,24 +41,13 @@
     {% if entry.poster %}<a class="pub-link" href="{{ entry.poster | relative_url }}"{% if entry.poster contains '://' %} target="_blank" rel="noopener"{% endif %}>Poster</a>{% endif %}
     {% if entry.video %}<a class="pub-link" href="{{ entry.video | relative_url }}"{% if entry.video contains '://' %} target="_blank" rel="noopener"{% endif %}>Video</a>{% endif %}
     {% if entry.supplement %}<a class="pub-link" href="{{ entry.supplement | relative_url }}"{% if entry.supplement contains '://' %} target="_blank" rel="noopener"{% endif %}>Supplement</a>{% endif %}
-    {% if entry.doi %}<a class="pub-link" href="{{ doi_url }}" target="_blank" rel="noopener">DOI</a>{% endif %}
-    {% if entry.doi and entry.url and entry.url != doi_url %}<a class="pub-link" href="{{ entry.url | relative_url }}"{% if entry.url contains '://' %} target="_blank" rel="noopener"{% endif %}>Link</a>{% endif %}
+
+    <button class="pub-link" type="button" data-bibtex-toggle>BibTeX</button>
   </div>
-  {% endif %}
 
-  {% if entry.abstract %}
-  <details class="pub-abstract">
-    <summary>Abstract</summary>
-    <p class="pub-abstract-text">{{ entry.abstract }}</p>
-  </details>
-  {% endif %}
-
-  <details class="pub-bibtex">
-    <summary>BibTeX</summary>
-    <div class="bibtex-wrap">
-      <pre class="bibtex"><code>{{ entry.bibtex | escape }}</code></pre>
-      <button class="copy-btn" type="button" data-copy>Copy</button>
-    </div>
-  </details>
+  <div class="bibtex-wrap" hidden>
+    <pre class="bibtex"><code>{{ entry.bibtex | escape }}</code></pre>
+    <button class="copy-btn" type="button" data-copy>Copy</button>
+  </div>
 
 </article>

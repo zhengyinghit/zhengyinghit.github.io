@@ -224,7 +224,7 @@ code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, mo
    Publications (rendered from BibTeX by jekyll-scholar)
    ===================================================================== */
 ol.bibliography { list-style: none; padding: 0; margin: 0; }
-ol.bibliography > li { padding: 8px 0; border-bottom: 1px solid var(--border); }
+ol.bibliography > li { padding: 7px 0; border-bottom: 1px solid var(--border); }
 ol.bibliography > li:last-child { border-bottom: none; }
 
 .pub-title { font-size: 1rem; margin: 0 0 1px; font-weight: 650; }
@@ -243,24 +243,19 @@ ol.bibliography > li:last-child { border-bottom: none; }
   border-radius: 6px;
   font-size: 0.72rem;
   font-weight: 500;
+  font-family: inherit;
+  line-height: 1.5;
   color: var(--text-muted);
   background: var(--bg-subtle);
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
 }
 .pub-link:hover { color: var(--accent); border-color: var(--accent); text-decoration: none; }
-
-details.pub-abstract,
-details.pub-bibtex { margin-top: 4px; font-size: 0.86rem; }
-details summary {
-  cursor: pointer;
-  color: var(--text-muted);
-  font-weight: 600;
-  font-size: 0.8rem;
-  user-select: none;
-}
-details summary:hover { color: var(--accent); }
-.pub-abstract-text { margin-top: 4px; color: var(--text-muted); }
+.pub-link.is-active { color: var(--accent); border-color: var(--accent); }
 
 .bibtex-wrap { position: relative; margin-top: 4px; }
+.bibtex-wrap[hidden] { display: none; }
 .bibtex {
   margin: 0;
   padding: 12px;
